@@ -86,10 +86,6 @@ TwentyFour::paintDialPlate(
         aPainter->drawEllipse(center, r3, r3);
     }
 
-    // Draw the sunrise/set
-    //qreal sunrise = 30;
-    //qreal sunset = 120;
-
     //sun_rise_set(year,month,day,lon,lat,rise,set)
     // versailles : lat=48.807N, lon=2.137E
     double rise, set;
@@ -97,24 +93,30 @@ TwentyFour::paintDialPlate(
 
     int sunriset = sun_rise_set(today.year(), today.month(), today.day(), 2.137, 48.807, &rise, &set);
 
-    QTRACE("- sunriset : " << sunriset << " rise=" << rise << " set=" << set);
+    // Add curent timezone offset
+    int timeZoneOffset = QDateTime::currentDateTime().offsetFromUtc();
+    rise += timeZoneOffset / 3600;
+    set += timeZoneOffset / 3600;
 
-    int SECS_IN_A_DAY = 3600 * 24;
+    QTRACE("- sunriset : " << sunriset << " rise=" << rise << " set=" << set << " (including tzoffset=" <<timeZoneOffset<<")");
 
-    qreal sunrise = 270 - ((SECS_IN_A_DAY - rise * 3600) / SECS_IN_A_DAY) * 360;
-    qreal sunset = 270 - ((SECS_IN_A_DAY - set * 3600) / SECS_IN_A_DAY) * 360;
+    qreal sunrise = (rise / 24) * 360 + 90;
+    qreal sunset = (set / 24) * 360 + 90;
+
+    QTRACE("- angles : rise=" << sunrise << " set=" << sunset) ;
 
     qreal sunrisetRatio = .7;
     aPainter->setPen(Qt::NoPen);
 
     // draw day
     aPainter->setBrush(QBrush(aTheme->iDayColor));
-    aPainter->drawPie(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, sunrise * 16, (sunset - sunrise) * 16);
+    aPainter->drawPie(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, -sunrise * 16, -(sunset - sunrise) * 16);
 
     // draw night
     aPainter->setBrush(QBrush(aTheme->iNightColor));
-    aPainter->drawPie(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, sunset * 16, (360 - (sunset - sunrise)) * 16);
+    aPainter->drawPie(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, -sunset * 16, -(360 - (sunset - sunrise)) * 16);
 
+    // draw ticks
     const qreal y = d / 84;
     const qreal y1 = qMax(qreal(1), qreal(d / 195));
     const qreal x1 = d / 2.71;
@@ -125,14 +127,6 @@ TwentyFour::paintDialPlate(
     QBrush markBrush(aTheme->iHourMinHandColor);
 
     aPainter->setPen(aTheme->iHourMinHandColor);
-    /*for (int i=0; i<60; i++) {
-        if (i % 5) {
-            aPainter->fillRect(minMarkRect, markBrush);
-        } else {
-            aPainter->fillRect(hourMarkRect, markBrush);
-        }
-        aPainter->rotate(6.0);
-    }*/
     for (int i=0; i<24; i++) {
         if (i % 6) {
             aPainter->fillRect(minMarkRect, markBrush);
