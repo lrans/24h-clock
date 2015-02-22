@@ -105,16 +105,26 @@ TwentyFour::paintDialPlate(
 
     QTRACE("- angles : rise=" << sunrise << " set=" << sunset) ;
 
-    qreal sunrisetRatio = .7;
+    qreal sunrisetRatio = aDrawBackground ? 0.7 : 0.6;
     aPainter->setPen(Qt::NoPen);
 
     // draw day
-    aPainter->setBrush(QBrush(aTheme->iDayColor));
-    aPainter->drawPie(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, -sunrise * 16, -(sunset - sunrise) * 16);
+    if (aDrawBackground) {
+        aPainter->setBrush(QBrush(aTheme->iDayColor));
+        aPainter->drawPie(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, -sunrise * 16, -(sunset - sunrise) * 16);
+    } else {
+        aPainter->setPen(QPen(QBrush(aTheme->iDayColor), d/20, Qt::SolidLine, Qt::FlatCap));
+        aPainter->drawArc(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, -sunrise * 16, -(sunset - sunrise) * 16);
+    }
 
     // draw night
-    aPainter->setBrush(QBrush(aTheme->iNightColor));
-    aPainter->drawPie(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, -sunset * 16, -(360 - (sunset - sunrise)) * 16);
+    if (aDrawBackground) {
+        aPainter->setBrush(QBrush(aTheme->iNightColor));
+        aPainter->drawPie(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, -sunset * 16, -(360 - (sunset - sunrise)) * 16);
+    } else {
+        aPainter->setPen(QPen(QBrush(aTheme->iNightColor), d/20, Qt::SolidLine, Qt::FlatCap));
+        aPainter->drawArc(-w*sunrisetRatio/2, -h*sunrisetRatio/2, w*sunrisetRatio, h*sunrisetRatio, -sunset * 16, -(360 - (sunset - sunrise)) * 16);
+    }
 
     // draw ticks
     const qreal y = d / 84;
