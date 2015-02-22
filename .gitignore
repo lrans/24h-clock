@@ -1,3 +1,4 @@
 build
 harbour-swissclock.pro.user
 translations/*.qm
+src/.directory

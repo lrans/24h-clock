@@ -14,10 +14,12 @@ SOURCES += \
     src/ClockRenderer.cpp \
     src/ClockRendererHelsinkiMetro.cpp \
     src/ClockRendererSwissRailroad.cpp \
+    src/ClockRenderer24H.cpp \
     src/ClockSettings.cpp \
     src/ClockTheme.cpp \
     src/QuickClock.cpp \
-    src/SystemState.cpp
+    src/SystemState.cpp \
+    src/sunriset.cpp
 
 HEADERS += \
     src/ClockDebug.h \
@@ -25,7 +27,8 @@ HEADERS += \
     src/ClockSettings.h \
     src/ClockTheme.h \
     src/QuickClock.h \
-    src/SystemState.h
+    src/SystemState.h \
+    src/sunriset.h
 
 OTHER_FILES += \
     qml/*.qml \

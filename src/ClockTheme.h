@@ -44,6 +44,8 @@ public:
     QColor iSecondHandColor;
     QColor iHandShadowColor1;
     QColor iHandShadowColor2;
+    QColor iDayColor;
+    QColor iNightColor;
 
     static ClockTheme* newDefault();
     static ClockTheme* newInverted();

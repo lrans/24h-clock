@@ -40,8 +40,9 @@ Page {
     property bool ready: false
 
     readonly property var clockModel: [
-        { style: "SwissRailroad", title: qsTr("swiss-clock-title") },
-        { style: "HelsinkiMetro", title: qsTr("helsinki-clock-title") }
+        { style: "SwissRailroad", title: qsTr("swiss-clock-title"), twentyFour: false},
+        { style: "HelsinkiMetro", title: qsTr("helsinki-clock-title"), twentyFour: false },
+        { style: "24H", title: qsTr("24h-clock-title"), twentyFour: true }
     ]
 
     Component.onCompleted: {
@@ -99,7 +100,7 @@ Page {
                         anchors.margins: Theme.paddingSmall
                         Label {
                             id: label2
-                            text: "9"
+                            text: clockModel[(index + initialIndex) % clockModel.length].twentyFour ? "  6" : "9"
                             font.bold: true
                             height: parent.height
                             horizontalAlignment: Text.AlignHCenter
@@ -129,7 +130,7 @@ Page {
                         }
                         Label {
                             id: label3
-                            text: "3"
+                            text: clockModel[(index + initialIndex) % clockModel.length].twentyFour ? "18" : "3"
                             font.bold: true
                             height: parent.height
                             horizontalAlignment: Text.AlignHCenter
@@ -138,7 +139,7 @@ Page {
                     }
                     Label {
                         id: label4
-                        text: "6"
+                        text: clockModel[(index + initialIndex) % clockModel.length].twentyFour ? "0" : "6"
                         font.bold: true
                         width: parent.width
                         horizontalAlignment: Text.AlignHCenter

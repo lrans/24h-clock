@@ -55,6 +55,7 @@ public:
 public:
     static ClockRenderer* newSwissRailroad();
     static ClockRenderer* newHelsinkiMetro();
+    static ClockRenderer* new24H();
 
 protected:
     ClockRenderer(QString aId);

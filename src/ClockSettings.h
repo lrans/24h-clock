@@ -41,6 +41,7 @@
 
 #define CLOCK_STYLE_SWISS_RAILROAD  "SwissRailroad"
 #define CLOCK_STYLE_HELSINKI_METRO  "HelsinkiMetro"
+#define CLOCK_STYLE_24H  "24H"
 
 class MGConfItem;
 
