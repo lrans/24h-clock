@@ -87,8 +87,6 @@ QuickClock::QuickClock(QQuickItem* aParent) :
     iRepaintTimer(new QTimer(this))
 {
     QTRACE("- created");
-    iRenderers.append(ClockRenderer::newSwissRailroad());
-    iRenderers.append(ClockRenderer::newHelsinkiMetro());
     iRenderers.append(ClockRenderer::new24H());
     setStyle(DEFAULT_CLOCK_STYLE);
     setFlags(ItemHasContents);

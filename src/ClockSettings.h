@@ -37,12 +37,10 @@
 
 #define DEFAULT_SHOW_NUMBERS        false
 #define DEFAULT_INVERT_COLORS       false
-#define DEFAULT_CLOCK_STYLE         CLOCK_STYLE_SWISS_RAILROAD
+#define DEFAULT_CLOCK_STYLE         CLOCK_STYLE_24H
 #define DEFAULT_LONGITUDE           48.8000000
 #define DEFAULT_LATITUDE            2.1333300
 
-#define CLOCK_STYLE_SWISS_RAILROAD  "SwissRailroad"
-#define CLOCK_STYLE_HELSINKI_METRO  "HelsinkiMetro"
 #define CLOCK_STYLE_24H  "24H"
 
 class MGConfItem;

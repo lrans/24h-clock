@@ -41,8 +41,6 @@ Page {
     property bool ready: false
 
     readonly property var clockModel: [
-        { style: "SwissRailroad", title: qsTr("swiss-clock-title"), twentyFour: false},
-        { style: "HelsinkiMetro", title: qsTr("helsinki-clock-title"), twentyFour: false },
         { style: "24H", title: qsTr("24h-clock-title"), twentyFour: true }
     ]
 

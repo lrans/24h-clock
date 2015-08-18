@@ -12,8 +12,6 @@ CONFIG(debug, debug|release) {
 SOURCES += \
     src/main.cpp \
     src/ClockRenderer.cpp \
-    src/ClockRendererHelsinkiMetro.cpp \
-    src/ClockRendererSwissRailroad.cpp \
     src/ClockRenderer24H.cpp \
     src/ClockSettings.cpp \
     src/ClockTheme.cpp \

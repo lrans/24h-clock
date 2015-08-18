@@ -53,8 +53,6 @@ public:
     QString id() const { return iId; }
 
 public:
-    static ClockRenderer* newSwissRailroad();
-    static ClockRenderer* newHelsinkiMetro();
     static ClockRenderer* new24H();
 
 protected:

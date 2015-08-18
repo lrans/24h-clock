@@ -9,7 +9,7 @@ Version:    1.0.0
 Release:    1
 Group:      Qt/Qt
 License:    BSD
-URL:        https://github.com/lrans/harbour-swissclock
+URL:        https://github.com/lrans/24h-clock
 Source0:    %{name}-%{version}.tar.bz2
 
 Requires:      sailfishsilica-qt5 >= 0.10.9
@@ -50,13 +50,5 @@ desktop-file-install --delete-original \
 %{_datadir}/icons/hicolor/86x86/apps/%{name}.png
 
 %changelog
-* Sun Oct 26 2014 Slava Monich <slava.monich@jolla.com> 1.0.2
-- Store settings in dconf
-- Fixed a problem with the minute hand being a bit too blurry
-- Added Helsinki metro clock
-
-* Fri Jun 27 2014 Slava Monich <slava.monich@jolla.com> 1.0.1
-- Fixed corrupted background (hopefully)
-
-* Fri Jun 13 2014 Slava Monich <slava.monich@jolla.com> 1.0.0
-- Initial version
+* Tue Aug 18 2015 Snarl <lrans@users.noreply.github.com> 1.0.0
+- Initial version (forked from https://github.com/monich/harbour-swissclock)
