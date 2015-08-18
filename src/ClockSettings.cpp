@@ -37,7 +37,7 @@
 #include <QSettings>
 
 #define SETTINGS_GROUP          "Configuration/"
-#define DCONF_PATH              "/apps/harbour-swissclock/"
+#define DCONF_PATH              "/apps/24h-clock/"
 #define KEY_SHOW_NUMBERS        "showNumbers"
 #define KEY_INVERT_COLORS       "invertColors"
 #define KEY_CLOCK_STYLE         "clockStyle"

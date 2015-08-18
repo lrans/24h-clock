@@ -1,4 +1,4 @@
-TARGET = harbour-swissclock
+TARGET = 24h-clock
 CONFIG += sailfishapp
 CONFIG += link_pkgconfig
 PKGCONFIG += mlite5 sailfishapp
@@ -33,12 +33,12 @@ HEADERS += \
 OTHER_FILES += \
     qml/*.qml \
     qml/*.png \
-    harbour-swissclock.desktop \
     translations/*.ts \
-    rpm/harbour-swissclock.changes \
-    rpm/harbour-swissclock.spec
+    24h-clock.desktop \
+    rpm/24h-clock.spec \
+    rpm/24h-clock.changes
 
 CONFIG += sailfishapp_i18n
 TRANSLATIONS += \
-    translations/harbour-swissclock.ts \
-    translations/harbour-swissclock-ru.ts
+    translations/24h-clock.ts \
+    translations/24h-clock-ru.ts

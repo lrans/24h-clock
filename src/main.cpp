@@ -54,7 +54,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     QLocale locale;
     QTranslator* translator = new QTranslator(app);
     QString transDir = SailfishApp::pathTo("translations").toLocalFile();
-    QString transFile("harbour-swissclock");
+    QString transFile("24h-clock");
     if (translator->load(locale, transFile, "-", transDir) ||
         translator->load(transFile, transDir)) {
         app->installTranslator(translator);
@@ -63,7 +63,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         delete translator;
     }
 
-    registerClockTypes("harbour.swissclock", 1, 0);
+    registerClockTypes("twentyfour.clock", 1, 0);
 
     QQuickView *view = SailfishApp::createView();
     view->setSource(SailfishApp::pathTo(QString("qml/main.qml")));

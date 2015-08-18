@@ -3,13 +3,13 @@
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 
-Name:       harbour-swissclock
-Summary:    Swiss Clock
-Version:    1.0.3
+Name:       24h-clock
+Summary:    24H clock
+Version:    1.0.0
 Release:    1
 Group:      Qt/Qt
 License:    BSD
-URL:        https://github.com/monich/harbour-swissclock
+URL:        https://github.com/lrans/harbour-swissclock
 Source0:    %{name}-%{version}.tar.bz2
 
 Requires:      sailfishsilica-qt5 >= 0.10.9
@@ -25,7 +25,7 @@ BuildRequires: qt5-qttools-linguist
 BuildRequires: qt5-qtdeclarative-import-positioning
 
 %description
-Swiss-style clock
+24H clock with sunrise/sunset (forked from https://github.com/monich/harbour-swissclock)
 
 %prep
 %setup -q -n %{name}-%{version}
