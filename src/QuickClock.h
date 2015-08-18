@@ -50,6 +50,8 @@ class QuickClock: public QQuickItem
     Q_PROPERTY(bool running READ running WRITE setRunning NOTIFY runningChanged)
     Q_PROPERTY(bool invertColors READ invertColors WRITE setInvertColors NOTIFY invertColorsChanged)
     Q_PROPERTY(bool drawBackground READ drawBackground WRITE setDrawBackground NOTIFY drawBackgroundChanged)
+    Q_PROPERTY(double longitude READ longitude WRITE setLongitude)
+    Q_PROPERTY(double latitude READ latitude WRITE setLatitude)
     Q_PROPERTY(QString lockMode READ lockMode WRITE setLockMode NOTIFY lockModeChanged)
     Q_PROPERTY(QString displayStatus READ displayStatus WRITE setDisplayStatus NOTIFY displayStatusChanged)
     Q_PROPERTY(QString style READ style WRITE setStyle NOTIFY styleChanged)
@@ -63,6 +65,12 @@ public:
 
     bool drawBackground() const { return iDrawBackground; }
     void setDrawBackground(bool aValue);
+
+    double longitude() const { return iLongitude; }
+    void setLongitude(double aValue);
+
+    double latitude() const { return iLatitude; }
+    void setLatitude(double aValue);
 
     bool running() const { return iRunning; }
     void setRunning(bool aRunning);
@@ -104,6 +112,8 @@ private slots:
 private:
     bool iInvertColors;
     bool iDrawBackground;
+    double iLongitude;
+    double iLatitude;
     bool iDisplayOff;
     bool iDisplayLocked;
     bool iRunning;

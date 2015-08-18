@@ -44,7 +44,7 @@ class ClockRenderer
 public:
     virtual ~ClockRenderer();
     virtual void paintDialPlate(QPainter* aPainter, const QSize& aSize,
-        ClockTheme* aTheme, bool aDrawBackground) = 0;
+        ClockTheme* aTheme, bool aDrawBackground, double longitude = 0, double latitude = 0) = 0;
     virtual void paintHourMinHands(QPainter* aPainter, const QSize& aSize,
         const QTime& aTime, ClockTheme* aTheme) = 0;
     virtual void paintSecHand(QPainter* aPainter, const QSize& aSize,

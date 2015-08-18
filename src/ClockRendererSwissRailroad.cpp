@@ -37,7 +37,7 @@ class SwissRailroad : public ClockRenderer
 public:
     SwissRailroad() : ClockRenderer("SwissRailroad") {}
     virtual void paintDialPlate(QPainter* aPainter, const QSize& aSize,
-        ClockTheme* aTheme, bool aDrawBackground);
+        ClockTheme* aTheme, bool aDrawBackground, double longitude, double latitude);
     virtual void paintHourMinHands(QPainter* aPainter, const QSize& aSize,
         const QTime& aTime, ClockTheme* aTheme);
     virtual void paintSecHand(QPainter* aPainter, const QSize& aSize,
@@ -58,7 +58,9 @@ SwissRailroad::paintDialPlate(
     QPainter* aPainter,
     const QSize& aSize,
     ClockTheme* aTheme,
-    bool aDrawBackground)
+    bool aDrawBackground,
+    double longitude,
+    double latitude)
 {
     const qreal w = aSize.width();
     const qreal h = aSize.height();

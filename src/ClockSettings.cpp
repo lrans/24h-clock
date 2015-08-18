@@ -41,15 +41,21 @@
 #define KEY_SHOW_NUMBERS        "showNumbers"
 #define KEY_INVERT_COLORS       "invertColors"
 #define KEY_CLOCK_STYLE         "clockStyle"
+#define KEY_LONGITUDE           "longitude"
+#define KEY_LATITUDE            "latitude"
 
 #define SETTINGS_SHOW_NUMBERS   SETTINGS_GROUP KEY_SHOW_NUMBERS
 #define SETTINGS_INVERT_COLORS  SETTINGS_GROUP KEY_INVERT_COLORS
+#define SETTINGS_LONGITUDE      SETTINGS_GROUP KEY_LONGITUDE
+#define SETTINGS_LATITUDE       SETTINGS_GROUP KEY_LATITUDE
 
 ClockSettings::ClockSettings(QObject* aParent) :
     QObject(aParent),
     iShowNumbers(new MGConfItem(DCONF_PATH KEY_SHOW_NUMBERS, this)),
     iInvertColors(new MGConfItem(DCONF_PATH KEY_INVERT_COLORS, this)),
-    iClockStyle(new MGConfItem(DCONF_PATH KEY_CLOCK_STYLE, this))
+    iClockStyle(new MGConfItem(DCONF_PATH KEY_CLOCK_STYLE, this)),
+    iLongitude(new MGConfItem(DCONF_PATH KEY_LONGITUDE, this)),
+    iLatitude(new MGConfItem(DCONF_PATH KEY_LATITUDE, this))
 {
     QTRACE("- created");
 
@@ -65,12 +71,24 @@ ClockSettings::ClockSettings(QObject* aParent) :
         QTRACE("- importing " SETTINGS_INVERT_COLORS ":" << value);
         iInvertColors->set(value);
     }
+    if (settings.contains(SETTINGS_LONGITUDE)) {
+        double value = settings.value(SETTINGS_LONGITUDE).toDouble();
+        QTRACE("- importing " SETTINGS_LONGITUDE ":" << value);
+        iLongitude->set(value);
+    }
+    if (settings.contains(SETTINGS_LATITUDE)) {
+        double value = settings.value(SETTINGS_LATITUDE).toDouble();
+        QTRACE("- importing " SETTINGS_LATITUDE ":" << value);
+        iLatitude->set(value);
+    }
     settings.remove("");
     settings.sync();
 
     connect(iShowNumbers, SIGNAL(valueChanged()), SIGNAL(showNumbersChanged()));
     connect(iInvertColors, SIGNAL(valueChanged()), SIGNAL(invertColorsChanged()));
     connect(iClockStyle, SIGNAL(valueChanged()), SIGNAL(clockStyleChanged()));
+    connect(iLongitude, SIGNAL(valueChanged()), SIGNAL(locationChanged()));
+    connect(iLatitude, SIGNAL(valueChanged()), SIGNAL(locationChanged()));
 }
 
 ClockSettings::~ClockSettings()
@@ -93,6 +111,16 @@ QString ClockSettings::clockStyle() const
     return iClockStyle->value(DEFAULT_CLOCK_STYLE).toString();
 }
 
+double ClockSettings::longitude() const
+{
+    return iLongitude->value(DEFAULT_LONGITUDE).toDouble();
+}
+
+double ClockSettings::latitude() const
+{
+    return iLatitude->value(DEFAULT_LATITUDE).toDouble();
+}
+
 void ClockSettings::setShowNumbers(bool aValue)
 {
     QTRACE("-" << KEY_SHOW_NUMBERS << "=" << aValue);
@@ -109,4 +137,16 @@ void ClockSettings::setClockStyle(QString aValue)
 {
     QTRACE("-" << KEY_CLOCK_STYLE << "=" << aValue);
     iClockStyle->set(aValue);
+}
+
+void ClockSettings::setLongitude(double aValue)
+{
+    QTRACE("-" << KEY_LONGITUDE << "=" << aValue);
+    iLongitude->set(aValue);
+}
+
+void ClockSettings::setLatitude(double aValue)
+{
+    QTRACE("-" << KEY_LATITUDE << "=" << aValue);
+    iLatitude->set(aValue);
 }

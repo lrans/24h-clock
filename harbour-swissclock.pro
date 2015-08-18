@@ -3,7 +3,7 @@ CONFIG += sailfishapp
 CONFIG += link_pkgconfig
 PKGCONFIG += mlite5 sailfishapp
 QMAKE_CXXFLAGS += -Wno-unused-parameter
-QT += dbus
+QT += dbus positioning
 
 CONFIG(debug, debug|release) {
   DEFINES += CLOCK_DEBUG=1

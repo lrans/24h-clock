@@ -30,6 +30,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtPositioning 5.2
 import harbour.swissclock 1.0
 
 Page {
@@ -115,6 +116,8 @@ Page {
                                 drawBackground: true
                                 style: clockModel[(index + initialIndex) % clockModel.length].style
                                 invertColors: globalClockSettings.invertColors
+                                longitude: globalClockSettings.longitude
+                                latitude: globalClockSettings.latitude
                                 displayStatus: globalSystemState.displayStatus
                                 lockMode: globalSystemState.lockMode
                                 running: (index == slideshow.currentIndex) || slideshow.moving
@@ -125,6 +128,19 @@ Page {
                                 onDoubleClicked: {
                                     globalClockSettings.invertColors = !globalClockSettings.invertColors
                                     mouse.accepted = true
+                                }
+                            }
+                            PositionSource {
+                                active : true
+                                id: ps
+                                onPositionChanged: {
+                                    if (ps.position.horizontalAccuracy !== -1 && ps.position.verticalAccuracy !== -1) {
+                                        clock.longitude = ps.position.coordinate.longitude;
+                                        clock.latitude = ps.position.coordinate.latitude;
+                                        globalClockSettings.longitude = ps.position.coordinate.longitude;
+                                        globalClockSettings.latitude = ps.position.coordinate.latitude;
+                                        ps.active = false;
+                                    }
                                 }
                             }
                         }

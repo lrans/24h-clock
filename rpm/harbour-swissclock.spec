@@ -13,6 +13,7 @@ URL:        https://github.com/monich/harbour-swissclock
 Source0:    %{name}-%{version}.tar.bz2
 
 Requires:      sailfishsilica-qt5 >= 0.10.9
+Requires:      qt5-qtdeclarative-import-positioning
 BuildRequires: pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires: pkgconfig(mlite5)
 BuildRequires: pkgconfig(Qt5Core)
@@ -21,6 +22,7 @@ BuildRequires: pkgconfig(Qt5Quick)
 BuildRequires: pkgconfig(Qt5DBus)
 BuildRequires: desktop-file-utils
 BuildRequires: qt5-qttools-linguist
+BuildRequires: qt5-qtdeclarative-import-positioning
 
 %description
 Swiss-style clock

@@ -165,6 +165,24 @@ void QuickClock::setDrawBackground(bool aValue)
     }
 }
 
+void QuickClock::setLongitude(double aValue)
+{
+    if (iLongitude != aValue) {
+        iLongitude = aValue;
+        iRepaintAll = true;
+        update();
+    }
+}
+
+void QuickClock::setLatitude(double aValue)
+{
+    if (iLatitude != aValue) {
+        iLatitude = aValue;
+        iRepaintAll = true;
+        update();
+    }
+}
+
 void QuickClock::setStyle(QString aValue)
 {
     if (aValue.isEmpty()) aValue = DEFAULT_CLOCK_STYLE;
@@ -248,8 +266,7 @@ void QuickClock::scheduleUpdate()
     QMetaObject::invokeMethod(iRepaintTimer, "start", Qt::QueuedConnection);
 }
 
-void QuickClock::paintOffScreenNoSec(
-    QPainter* aPainter,
+void QuickClock::paintOffScreenNoSec(QPainter* aPainter,
     const QSize& aSize,
     const QTime& aTime)
 {
@@ -267,7 +284,7 @@ void QuickClock::paintOffScreenNoSec(
         painter.setRenderHint(QPainter::Antialiasing);
         painter.setRenderHint(QPainter::HighQualityAntialiasing);
         aPainter->setCompositionMode(QPainter::CompositionMode_SourceOver);
-        iRenderer->paintDialPlate(&painter, aSize, theme(), iDrawBackground);
+        iRenderer->paintDialPlate(&painter, aSize, theme(), iDrawBackground, iLongitude, iLatitude);
     }
 
     aPainter->drawPixmap(0, 0, *iDialPlatePixmap);

@@ -41,7 +41,7 @@ class TwentyFour : public ClockRenderer
 public:
     TwentyFour() : ClockRenderer("24H") {}
     virtual void paintDialPlate(QPainter* aPainter, const QSize& aSize,
-        ClockTheme* aTheme, bool aDrawBackground);
+        ClockTheme* aTheme, bool aDrawBackground, double longitude, double latitude);
     virtual void paintHourMinHands(QPainter* aPainter, const QSize& aSize,
         const QTime& aTime, ClockTheme* aTheme);
     virtual void paintSecHand(QPainter* aPainter, const QSize& aSize,
@@ -62,7 +62,9 @@ TwentyFour::paintDialPlate(
     QPainter* aPainter,
     const QSize& aSize,
     ClockTheme* aTheme,
-    bool aDrawBackground)
+    bool aDrawBackground,
+    double longitude,
+    double latitude)
 {
     const qreal w = aSize.width();
     const qreal h = aSize.height();
@@ -91,7 +93,7 @@ TwentyFour::paintDialPlate(
     double rise, set;
     QDate today = QDate::currentDate();
 
-    int sunriset = sun_rise_set(today.year(), today.month(), today.day(), 2.137, 48.807, &rise, &set);
+    int sunriset = sun_rise_set(today.year(), today.month(), today.day(), longitude, latitude, &rise, &set);
 
     // Add curent timezone offset
     int timeZoneOffset = QDateTime::currentDateTime().offsetFromUtc();

@@ -38,6 +38,8 @@ CoverBackground {
         drawBackground: false
         invertColors: true
         style: globalClockSettings.clockStyle
+        longitude: globalClockSettings.longitude
+        latitude: globalClockSettings.latitude
         displayStatus: globalSystemState.displayStatus
         lockMode: globalSystemState.lockMode
         anchors.centerIn: parent

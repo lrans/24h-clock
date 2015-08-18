@@ -38,6 +38,8 @@
 #define DEFAULT_SHOW_NUMBERS        false
 #define DEFAULT_INVERT_COLORS       false
 #define DEFAULT_CLOCK_STYLE         CLOCK_STYLE_SWISS_RAILROAD
+#define DEFAULT_LONGITUDE           48.8000000
+#define DEFAULT_LATITUDE            2.1333300
 
 #define CLOCK_STYLE_SWISS_RAILROAD  "SwissRailroad"
 #define CLOCK_STYLE_HELSINKI_METRO  "HelsinkiMetro"
@@ -51,6 +53,8 @@ class ClockSettings : public QObject
     Q_PROPERTY(bool showNumbers READ showNumbers WRITE setShowNumbers NOTIFY showNumbersChanged)
     Q_PROPERTY(bool invertColors READ invertColors WRITE setInvertColors NOTIFY invertColorsChanged)
     Q_PROPERTY(QString clockStyle READ clockStyle WRITE setClockStyle NOTIFY clockStyleChanged)
+    Q_PROPERTY(double longitude READ longitude WRITE setLongitude NOTIFY locationChanged)
+    Q_PROPERTY(double latitude READ latitude WRITE setLatitude NOTIFY locationChanged)
 
 public:
     explicit ClockSettings(QObject* aParent = NULL);
@@ -59,20 +63,27 @@ public:
     bool showNumbers() const;
     bool invertColors() const;
     QString clockStyle() const;
+    double longitude() const;
+    double latitude() const;
 
     void setShowNumbers(bool aValue);
     void setInvertColors(bool aValue);
     void setClockStyle(QString aValue);
+    void setLongitude(double aValue);
+    void setLatitude(double aValue);
 
 signals:
     void showNumbersChanged();
     void invertColorsChanged();
     void clockStyleChanged();
+    void locationChanged();
 
 private:
     MGConfItem* iShowNumbers;
     MGConfItem* iInvertColors;
     MGConfItem* iClockStyle;
+    MGConfItem* iLongitude;
+    MGConfItem* iLatitude;
 };
 
 QML_DECLARE_TYPE(ClockSettings)
